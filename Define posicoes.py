@@ -19,6 +19,6 @@ def define_posicoes(linha, coluna, orientacao ,tamanho):
             linha+=1
         if orientacao=='horizontal':
             base[i]=[linha,coluna]
-            col+=1
+            coluna+=1
     return base
 print (define_posicoes(2, 3,'vertical' ,4))
