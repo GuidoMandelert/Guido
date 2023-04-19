@@ -11,13 +11,14 @@ def define_posicoes(linha, coluna, orientacao ,tamanho):
       [0,0,0,0,0,0,0,0,0,0],
       [0,0,0,0,0,0,0,0,0,0],
   ]
-    base=grid[linha][coluna]
-    posicao=[]
-    if orientacao=='vertical':
-        for i in range(tamanho):
-            posicao.append(grid[linha+i],[coluna])
-    if orientacao=='horizontal':
-        for i in range(tamanho):
-            posicao.append(grid[linha],[coluna+i])
-    return posicao
+    tam=int(tamanho)
+    base=[0]*tamanho
+    for i in range(tam):   
+        if orientacao=='vertical':
+            base[i]=[linha,coluna]
+            linha+=1
+        if orientacao=='horizontal':
+            base[i]=[linha,coluna]
+            col+=1
+    return base
 print (define_posicoes(2, 3,'vertical' ,4))
