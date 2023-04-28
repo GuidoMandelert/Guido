@@ -32,31 +32,3 @@ def faz_jogada(tabuleiro,linha,coluna):
         tabuleiro[linha][coluna]='-'
     return tabuleiro
 
-#posiciona frota
-
-def posiciona_frota(frota):
-    tabu=[[0]*10 for _ in range(10)]
-    for barco in frota.values():
-        for p in barco:
-            for pos in p:
-                x = pos[0]
-                y = pos[1]
-                tabu[x][y]=1
-    return tabu
-
-#Quantas embarcações afundadas?
-def afundados(frota,tabu):
-  resp=0
-  for barco in frota:
-    barco=frota[barco]
-    for unidade in barco:
-      resp+=1
-      for local in unidade:
-        x=local[0]
-        y=local[1]
-        if tabu[x][y]!='X':
-          resp-=1
-          break
-  return resp
-
-
