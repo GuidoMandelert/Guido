@@ -13,16 +13,10 @@ def posicao_valida(dic,lin,col,orientacao,tamanho):
         return False
     barco=define_posicoes(lin,col,orientacao,tamanho)
     for i in barco:
-        if i[0]>9 or i[1]>9:
+        a=i[0]
+        b=i[1]
+        if a>9 or b>9:
             return False
-        for e in dic:
-            frota=dic[e]
-            for boat in frota:
-                for coord in boat:
-                    if coord==i:
-                        return False
-    return True
-
 print(posicao_valida({
     'navio-tanque': [[[4, 9], [5, 9], [6, 9]], [[6, 3], [7, 3], [8, 3]]],
     "contratorpedeiro":[
