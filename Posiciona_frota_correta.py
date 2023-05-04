@@ -13,22 +13,29 @@ def posicao_valida(dic,lin,col,orientacao,tamanho):
         if i[0]>9 or i[1]>9:
             return False
         for e in dic:
-            coord=dic[e]
-            for boat in coord:
-                if boat==i:
-                    return False
+            frota=dic[e]
+            for boat in frota:
+                for coord in boat:
+                    if coord==i:
+                        return False
     return True
 def preenche_frota(frota, nome_navio, linha, coluna, orientacao, tamanho):
     nova_posicao=[]
     nova_posicao.append(define_posicoes (linha,coluna,orientacao,tamanho))
-    if nome_navio not in frota: 
+    barco=frota[nome_navio]
+    if barco==[]: 
         frota[nome_navio]=nova_posicao
     else :
-        posicao=frota[nome_navio]
+        posicao=barco
         posicao.append(define_posicoes (linha,coluna,orientacao,tamanho))
         frota[nome_navio]=posicao
     return frota
-frota={'porta-aviões': [[[0, 0], [0, 0], [0, 0], [0, 0]]], 'navio-tanque': [[[0, 0], [0, 0], [0, 0]], [[0, 0], [0, 0], [0, 0]]], 'contratorpedeiro': [[[0, 0], [0, 0]], [[0, 0], [0, 0]], [[0, 0], [0, 0]]], 'submarino': [[[0, 0]], [[0, 0]], [[0, 0]], [[0, 0]]]}
+frota = {
+    "porta-aviões":[],
+    "navio-tanque":[],
+    "contratorpedeiro":[],
+    "submarino": [],
+}
 quant = {
     "porta-aviões":1,
     "navio-tanque":2,
@@ -41,12 +48,11 @@ tam = {
     "contratorpedeiro":2,
     "submarino": 1,
 }
-for i in quant:
-    tipo=quant[i]
-    tamanho=tam[i]
-    print(f'Insira as informações referentes ao navio {i} que possui tamanho {tamanho} ')
+for i in frota.keys():
     e=0
-    while e<=(tipo-1):
+    tamanho=tam[i]
+    while e<quant[i]:
+        print(f'Insira as informações referentes ao navio {i} que possui tamanho {tamanho} ')
         linha=int(input('linha: '))
         coluna=int(input('coluna: '))
         if i!="submarino":
@@ -55,12 +61,9 @@ for i in quant:
                 orientacao='vertical'
             else:
                 orientacao='horizontal'
-        else:
-            orientacao=1
-        e+=1
         if posicao_valida(frota,linha,coluna,orientacao,tamanho)==False:
             print('Esta posição não está válida!')
         else:
-            frota[i]=preenche_frota(frota, tipo, linha, coluna, orientacao, tamanho)
-        e+=1
-print(frota)
+            frota=preenche_frota(frota, i, linha, coluna, orientacao, tamanho)
+            e+=1
+    print(frota)
