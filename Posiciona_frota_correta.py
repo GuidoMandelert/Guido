@@ -52,7 +52,7 @@ for i in frota.keys():
     e=0
     tamanho=tam[i]
     while e<quant[i]:
-        print(f'Insira as informações referentes ao navio {i} que possui tamanho {tamanho} ')
+        print(f'Insira as informações referentes ao navio {i} que possui tamanho {tamanho}')
         linha=int(input('linha: '))
         coluna=int(input('coluna: '))
         if i!="submarino":
@@ -66,4 +66,4 @@ for i in frota.keys():
         else:
             frota=preenche_frota(frota, i, linha, coluna, orientacao, tamanho)
             e+=1
-    print(frota)
+print(frota)
