@@ -9,8 +9,6 @@ def define_posicoes(linha, coluna, orientacao ,tamanho):
     return base
 
 def posicao_valida(dic,lin,col,orientacao,tamanho):
-    if dic=={}:
-        return False
     barco=define_posicoes(lin,col,orientacao,tamanho)
     for i in barco:
         if i[0]>9 or i[1]>9:
@@ -22,15 +20,3 @@ def posicao_valida(dic,lin,col,orientacao,tamanho):
                     if coord==i:
                         return False
     return True
-
-print(posicao_valida({
-    'navio-tanque': [[[4, 9], [5, 9], [6, 9]], [[6, 3], [7, 3], [8, 3]]],
-    "contratorpedeiro":[
-      [[4,3],[4,4]]],
-    "submarino": [
-      [[0,0]],
-      [[0,1]],
-      [[0,2]],
-      [[0,3]]
-    ],
-},2,9,'horizontal',2))
